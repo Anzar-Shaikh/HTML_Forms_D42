@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML FORM</title>
+        <style>
+            body{
+                width: 100%;
+                max-width: 600px;
+                margin: 0px auto;
+                padding: 2em;
+            }
+            header{
+                display: flex;
+                background-color: rgb(189, 226, 174);
+                flex-flow: column wrap;
+                align-content: center;
+                font-size: 50px;
+                border:  2px solid black;
+                padding: 5px;
+                box-shadow: 10px 10px 5px lightblue;
+                margin-bottom: 20px;
+            }
+         
+            div{
+                margin-bottom:  20px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            label, input , button{
+                font-size: 16px;
+                line-height: 1.5;
+            }
+            label{
+                text-align: right;
+                width: 30%;
+                margin-right: 2%; 
+            }
+            input{
+                width: 70%;
+            }
+            button{
+                background-color: cyan;
+                width: 50%;
+                margin-right: 25%;
+                margin-left:   25%;
+                color:  black;
+                font-weight: bolder;
+            }
+            .textError{
+            font-size: 12px;
+            font-style: italic;
+            color:  red;
+            
+            }
+        </style>
+        <script>
+            
+        </script>
+    </head>
+    <body>
+        <form action="">
+            <header class = "header">HTML 5 FORM</header>
+            <div>
+                <label for="text"> text input for name</label>
+                <input type="text" name="text" id="text" required>
+                <error-output class ="textError" id = "error-output" name = "errorOutputForFirstName"  for = "text"></error-output>
+            </div>
+            <div>
+                <label for="pwd">password</label>
+                <input type="password" name="" id="" required>
+                <error-output class ="textError" id = "error-output" name = "errorOutputForPassword"  for = "text"></error-output>
+
+            </div>
+            <div>
+                <label for="email">email</label>
+                <input type="email" name="email" id="email" required>
+                <error-output class ="textError" id = "emailError" name = "errorOutputForEmail"  for = "text"></error-output>
+
+            </div>
+            <div>
+                <label for="url">url</label>
+                <input type="url" name="" id="" required>
+                <error-output class ="textError" id = "error-output" name = "errorOutputForUrl"  for = "text"></error-output>
+
+            </div>
+            <div>
+                <label for="text">number</label>
+                <input type="number" name="numberInput" id="numberInput" required >
+                <error-output class ="textError" id = "numberError" name = "errorOutputForFNumber"  for = "text"></error-output>
+
+            </div>
+            <div>
+                <label for="tel">telephone</label>
+                <input type="tel" name="" id=" " required>
+
+            </div>
+            <div>
+                <label for="search">search</label>
+                <input type="search" name="" id="" required>
+            </div>
+            <div>
+                <label for="startDate"></label>
+                <input type="date" name="" id="" required>
+                <span class="vaildity"></span>
+            </div>
+            <div>
+                <label for="salary">salary</label>
+                <input type="range" name = "salary"  id = "salary" min="300000" max="500000" step="100" required >
+                <output class="salary-output" for="salary">300000</output> 
+            </div>
+            <div>
+                <button>submit</button>
+            </div>
+
+        </form>
+        <script>
+            const salary = document.querySelector("#salary");
+            const output = document.querySelector(".salary-output");
+            salary.addEventListener("input", function(){
+                output.textContent = salary.value;
+            });
+
+            const text = document.getElementById("text");
+            const textError = document.getElementById("error-output");
+            text.addEventListener("input" , function (){
+            let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+                if (nameRegex.test(text.value)){
+                    textError.textContent = "";
+                }
+                else {textError.textContent = "Name is incorrect"}
+            });
+
+            const email = document.getElementById("email");
+            const emailError = document.getElementById("emailError");
+            email.addEventListener("input" , function(){
+                let emailRegex = RegExp("^abc([.][a-z]+)*@bl[.]co[.a-z]*$")
+                let emailnewRegex = RegExp("^([A-Z]+[a-z]*[0-9]+@[a-z]*[.][a-z]+){8,}$")
+                if (emailnewRegex.test(email.value)){
+                        emailError.textContent = "";
+                }else {
+                    emailError.textContent = "please enter valid email";
+                }
+            })
+            
+            const numberGiven = document.getElementById("numberInput");
+            const numberError = document.getElementById("numberError");
+            
+            numberGiven.addEventListener("input" , function(){
+            
+                let numberRegex = RegExp("^91[0-9]{10,}$");
+                if (numberRegex.test(numberGiven.value)){
+                    numberError.textContent = "";
+                }else {
+                    numberError.textContent = "please enter valid number";
+                }
+            });
+        </script>
+
+    </body>
+</html>
